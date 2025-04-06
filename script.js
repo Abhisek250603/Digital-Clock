@@ -1,17 +1,23 @@
 const $ = (selector) => document.querySelector(selector);
 
 const hour = $('.hour');
-const dots = document.querySelectorAll('.dot');
 const min = $('.min');
-const sec = document.querySelector('.sec');
+const sec = $('.sec');
+const dots = document.querySelectorAll('.dot');
 const week = $('.week');
-
-// Create AM/PM element
-let ampm = document.createElement('div');
+const ampm = document.createElement('div');
 ampm.className = 'ampm';
 document.querySelector('.time').appendChild(ampm);
 
 let showDot = true;
+
+function animateChange(element, newValue) {
+  if (element.textContent !== newValue) {
+    element.textContent = newValue;
+    element.classList.add('flip');
+    setTimeout(() => element.classList.remove('flip'), 500);
+  }
+}
 
 function update() {
   showDot = !showDot;
@@ -25,19 +31,24 @@ function update() {
   const ampmText = isAM ? "AM" : "PM";
   hrs = hrs % 12 || 12;
 
-  hour.textContent = String(hrs).padStart(2, '0');
-  min.textContent = String(mins).padStart(2, '0');
-  sec.textContent = String(secs).padStart(2, '0');
-  ampm.textContent = ampmText;
+  animateChange(hour, String(hrs).padStart(2, '0'));
+  animateChange(min, String(mins).padStart(2, '0'));
+  animateChange(sec, String(secs).padStart(2, '0'));
+  animateChange(ampm, ampmText);
 
   dots.forEach(dot => {
     dot.classList.toggle('invisible', showDot);
   });
 
-  Array.from(week.children).forEach((ele) => ele.classList.remove('active'));
+  Array.from(week.children).forEach(ele => ele.classList.remove('active'));
   const dayIndex = (now.getDay() + 6) % 7;
   week.children[dayIndex].classList.add('active');
 }
 
 setInterval(update, 500);
 update();
+
+// Toggle Theme
+document.querySelector('.toggle-theme').addEventListener('click', () => {
+  document.body.classList.toggle('light-mode');
+});
