@@ -1,0 +1,141 @@
+/* ==== Fonts ==== */
+@font-face {
+    font-family: "Hack";
+    src: url("fonts/Hac-Bold.ttf");
+}
+
+@font-face {
+    font-family: "DS-Digital";
+    src: url("fonts/DS-DIGI.TTF");
+}
+
+/* ==== Reset ==== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(145deg, #0f0f0f, #1c1c1c);
+    font-family: "Hack", sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* ==== Digital Clock ==== */
+.digital-clock {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid #ff0000;
+    box-shadow:
+        inset 0 0 20px #ff000033;
+    border-radius: 2rem;
+    padding: 2rem 3rem;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    transform: perspective(1000px) rotateX(5deg);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.digital-clock:hover {
+    transform: perspective(1000px) rotateX(0deg) scale(1.05);
+}
+
+/* ==== Week Column ==== */
+.week {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: "Hack";
+    font-weight: bold;
+    color: #2d2d2d;
+}
+
+.week .active {
+    color: #ff0000;
+    text-shadow:
+        1px 1px 2px #00887a,
+        0 0 10px #ff0000,
+        0 0 20px #ff0000;
+}
+
+/* ==== Time ==== */
+.time {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "DS-Digital", monospace;
+    font-size: 6rem;
+    color: #ff0000;
+    text-shadow:
+        1px 1px 0 #00665c,
+        2px 2px 2px #004c43,
+        0 0 10px #ff0000,
+        0 0 30px #ff0000;
+    transition: all 0.4s ease;
+}
+
+.digital-clock:hover .time {
+    text-shadow:
+        0 0 15px #ff7b00,
+        0 0 35px #ff7b00,
+        0 0 60px #ff7b00;
+}
+
+.hour, .min, .sec, .dot {
+    display: inline-block;
+}
+
+.sec {
+    font-size: 6rem;
+}
+
+.dot {
+    color: #ff0000;
+    text-shadow:
+        1px 1px 0 #00665c,
+        0 0 10px #ff0000,
+        0 0 30px #ff0000;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+/* ==== AM/PM ==== */
+.ampm {
+    font-size: 2rem;
+    margin-left: 1rem;
+    align-self: center;
+    color: #ff0000;
+    font-family: "Hack";
+    text-shadow:
+        0 0 5px #ff0000,
+        0 0 10px #ff0000;
+}
+
+/* ==== Footer ==== */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+    font-family: "Hack", sans-serif;
+    font-size: 0.9rem;
+    backdrop-filter: blur(6px);
+    text-shadow: 0 0 5px #ff0000;
+    box-shadow: 0 -2px 10px #ff000044;
+}
+
